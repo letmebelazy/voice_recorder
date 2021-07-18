@@ -6,6 +6,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:io' as io;
 import 'package:voice_recorder/file_list_page.dart';
 
+// 플레이어는 다른 페이지로 독립시켰기 때문에 main.dart에 있던 플레이어 관련 기존 코드들은 모두 삭제
+
 void main() {
   runApp(MyApp());
 }
@@ -77,6 +79,7 @@ class _RecorderState extends State<Recorder> {
   }
 
   void record() async {
+    // 현재 시간을 파일명으로 저장
     path = await _localPath;
     fileName = '$path/${DateTime.now().toString().replaceAll(RegExp(r'\D'), '')}.acc';
 
@@ -133,7 +136,7 @@ class _RecorderState extends State<Recorder> {
               fileNameList = await Navigator.push(
                   context, MaterialPageRoute(builder: (context) => FileListPage(fileNameList)));
             },
-            child: Text('Find a file'),
+            child: Text('File list'),
           ),
         ],
       ),
